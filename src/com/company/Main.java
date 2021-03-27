@@ -17,7 +17,12 @@ public class Main {
         while (true) {
             System.out.println("Enter your choice:");
             String input = scanner.nextLine();
-            Command command = Converter.convertInputToCommand(input);
+            Command command = new Command();
+            try {
+                command = Converter.validateInput(input);
+            } catch (ValidateException e) {
+                System.out.println(e.getMessage());
+            }
             ArrayList<Product> products = vendingMachine.getProduct(command);
             boolean flag = true;
             if (products.contains(null)) {

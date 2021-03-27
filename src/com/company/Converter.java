@@ -38,6 +38,15 @@ public class Converter {
             }
 
         }
+
         return command;
+    }
+
+    public static Command validateInput(String input) throws ValidateException {
+        try {
+            return convertInputToCommand(input);
+        } catch (IndexOutOfBoundsException | NumberFormatException ex) {
+            throw new ValidateException();
+        }
     }
 }
